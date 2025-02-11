@@ -1,0 +1,21 @@
+<div>
+  <custom-input
+    [disabled]="false"
+    [inputType]="'text'"
+    [inputValue]="inputValue"
+    [validationIsEnabled]="false"
+    (valueChange)="onInputValueChange($event)"
+  />
+  <p>Aktualna wartość: {{ inputValue }}</p>
+  <hr />
+  <custom-input
+    [inputType]="'color'"
+    [inputValue]="colorValue"
+    (valueChange)="onColorChange($event)"
+  />
+  <p>Aktualny kolor: {{ colorValue }}</p>
+  <hr />
+  <date-picker />
+  <hr />
+  <hour-picker />
+</div>

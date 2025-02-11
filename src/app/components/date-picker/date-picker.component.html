@@ -1,0 +1,60 @@
+<div class="date-picker">
+  <div class="date-inputs">
+    <div class="input-box">
+      <label>Start</label>
+      <span>{{
+        startDate ? startDate.toLocaleDateString() : "Wybierz..."
+      }}</span>
+    </div>
+    <div class="input-box">
+      <label>End</label>
+      <span>{{ endDate ? endDate.toLocaleDateString() : "Wybierz..." }}</span>
+    </div>
+  </div>
+
+  <div class="calendar">
+    <div class="header">
+      <button (click)="prevMonth()">&lt;</button>
+      <span (click)="toggleMonthYearSelection()"
+        >{{ currentMonthName }} {{ currentYear }}</span
+      >
+      <button (click)="nextMonth()">&gt;</button>
+    </div>
+
+    <div class="month-year-selector" *ngIf="isSelectingMonthYear">
+      <!-- Wybór roku -->
+      <div *ngIf="!selectedYear" class="year-selector">
+        <span *ngFor="let year of years" (click)="selectYear(year)">
+          {{ year }}
+        </span>
+      </div>
+
+      <!-- Wybór miesiąca -->
+      <div *ngIf="selectedYear" class="month-selector">
+        <span
+          *ngFor="let month of months; let i = index"
+          (click)="selectMonth(i)"
+        >
+          {{ month }}
+        </span>
+      </div>
+    </div>
+
+    <div class="week-days">
+      <span *ngFor="let day of weekDays">{{ day }}</span>
+    </div>
+
+    <div class="days">
+      <span
+        *ngFor="let day of daysInMonth"
+        [class.selected]="isSelected(day)"
+        [class.start]="startDate && isSameDay(day, startDate)"
+        [class.end]="endDate && isSameDay(day, endDate)"
+        [class.range]="isInRange(day)"
+        (click)="selectDate(day)"
+      >
+        {{ day.getDate() }}
+      </span>
+    </div>
+  </div>
+</div>

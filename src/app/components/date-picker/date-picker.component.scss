@@ -1,0 +1,119 @@
+.date-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+
+  .date-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+
+    .input-box {
+      background: #f0f0f0;
+      padding: 8px 12px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+    }
+  }
+
+  .calendar {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .month-year-selector {
+      position: absolute;
+      background: white;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      z-index: 1000;
+      width: 200px;
+
+      .year-selector,
+      .month-selector {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        span {
+          cursor: pointer;
+          padding: 5px;
+          text-align: center;
+          transition: background 0.2s;
+
+          &:hover {
+            background: #ddd;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+
+    .week-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background 0.2s;
+
+        &:hover {
+          background: #ddd;
+        }
+
+        &.selected {
+          background: #007bff;
+          color: white;
+        }
+
+        &.start,
+        &.end {
+          background: #0056b3;
+          color: white;
+          font-weight: bold;
+        }
+
+        &.range {
+          background: #cce5ff;
+        }
+      }
+    }
+  }
+}

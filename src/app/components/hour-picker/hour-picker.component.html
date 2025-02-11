@@ -1,0 +1,47 @@
+<div class="time-picker">
+  <div class="time-inputs">
+    <button
+      [class.active]="selectedMode === 'start'"
+      (click)="setMode('start')"
+    >
+      Start <span>{{ startTime }}</span>
+    </button>
+    <button [class.active]="selectedMode === 'end'" (click)="setMode('end')">
+      End <span>{{ endTime }}</span>
+    </button>
+  </div>
+
+  <div class="time-selector">
+    <div
+      class="column"
+      #hourScroll
+      (mousedown)="startDrag($event, 'hour')"
+      (touchstart)="startDrag($event, 'hour')"
+    >
+      <div
+        *ngFor="let hour of hours"
+        class="option"
+        [class.selected]="hour === selectedHour"
+        (click)="selectHour(hour)"
+      >
+        {{ hour | number : "2.0" }}
+      </div>
+    </div>
+
+    <div
+      class="column"
+      #minuteScroll
+      (mousedown)="startDrag($event, 'minute')"
+      (touchstart)="startDrag($event, 'minute')"
+    >
+      <div
+        *ngFor="let minute of minutes"
+        class="option"
+        [class.selected]="minute === selectedMinute"
+        (click)="selectMinute(minute)"
+      >
+        {{ minute | number : "2.0" }}
+      </div>
+    </div>
+  </div>
+</div>

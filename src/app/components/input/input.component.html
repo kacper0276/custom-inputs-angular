@@ -1,0 +1,41 @@
+<div class="custom-input-container">
+  <label for="inputField">{{ label }}</label>
+
+  <div class="input-wrapper">
+    @if (inputType === 'color') {
+    <ngx-colors
+      ngx-colors-trigger
+      (ngModelChange)="onColorChange($event)"
+      [(ngModel)]="inputValue"
+    ></ngx-colors>
+    } @else {
+    <input
+      id="inputField"
+      [type]="inputType"
+      [(ngModel)]="inputValue"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      (ngModelChange)="onInputChange()"
+    />
+    } @if(initialInputType === 'password') {
+    <button
+      type="button"
+      (click)="toggleInputType()"
+      class="toggle-visibility-btn"
+    >
+      <mat-icon>{{
+        inputType === "password" ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </button>
+    }
+  </div>
+
+  <div
+    class="validation-container"
+    [ngClass]="{ show: validationMessage !== '' }"
+  >
+    <p class="validation-message">
+      {{ validationMessage }}
+    </p>
+  </div>
+</div>
